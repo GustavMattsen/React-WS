@@ -8,10 +8,10 @@ function Sidebar() {
     >
       <h5 className="mb-4">Menu</h5>
       <ul className="list-unstyled">
-        <li>🏠 Dashboard</li>
-        <li>👥 Users</li>
-        <li><strong>📝 Tasks</strong></li>
-        <li>⚙️ Settings</li>
+        <li>Dashboard</li>
+        <li>Users</li>
+        <li><strong>Tasks</strong></li>
+        <li>Settings</li>
       </ul>
       <div className="mt-auto position-absolute bottom-0 mb-3">
         <hr />

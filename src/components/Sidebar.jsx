@@ -10,12 +10,15 @@ function Sidebar() {
       <ul className="list-unstyled">
         <li>Dashboard</li>
         <li>Users</li>
-        <li><strong>Tasks</strong></li>
+        <li>
+          <strong>Tasks</strong>
+        </li>
         <li>Settings</li>
       </ul>
       <div className="mt-auto position-absolute bottom-0 mb-3">
         <hr />
-        <small>Username</small><br />
+        <small>Username</small>
+        <br />
         <a href="#">Logout</a>
       </div>
     </div>

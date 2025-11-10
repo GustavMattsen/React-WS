@@ -2,36 +2,36 @@ import React from "react";
 
 function Header() {
   return (
-    <header className="bg-white p-3 mb-3 position-relative fixed-top">
-      <div className="container-fluid px-4 position-relative">
-        <h1 className="h4 mb-0">Tasks</h1>
+    <header
+      className="bg-white border-bottom position-fixed top-0 start-0 w-100 px-4 d-flex justify-content-between align-items-center"
+      style={{
+        zIndex: 1000,
+        height: "90px", // slightly taller header
+      }}
+    >
+      {/* Title */}
+      <h1
+        className="h4 text-dark mb-0"
+        style={{
+          paddingTop: "8px", // moves text down a bit
+        }}
+      >
+        Tasks
+      </h1>
 
-        <div
-          className="position-absolute start-50 translate-middle-x"
-          style={{ width: "300px", top: "0" }}
-        >
-          <div className="input-group">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search tasks..."
-            />
-            <button className="btn btn-outline-secondary" type="button">
-              <i className="bi bi-search"></i>
-            </button>
-          </div>
+      {/* Search bar */}
+      <div style={{ width: "280px" }}>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search tasks..."
+            style={{ fontSize: "0.9rem" }}
+          />
+          <button className="btn btn-outline-secondary" type="button">
+            <i className="bi bi-search"></i>
+          </button>
         </div>
-
-        {/* Divider line */}
-        <div
-          className="mt-4"
-          style={{
-            height: "2px",
-            backgroundColor: "#000",
-            opacity: 0.6,
-            width: "100%",
-          }}
-        ></div>
       </div>
     </header>
   );

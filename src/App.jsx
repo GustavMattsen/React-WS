@@ -26,5 +26,30 @@ function App() {
     const filtered = tasks.filter((task) => task.id !== id);
     setTasks(filtered);
   };
+// Toggle the task's "completed" status
+  const toggleComplete = (id) => {
+    const updated = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updated);
+  };
 
+  return (
+    <div className="app-container">
+      <Header />
+      <Sidebar />
+
+      {/* Pass addTask to the form so it can create new tasks */}
+      <TaskForm onAddTask={addTask} />
+
+      {/* Pass tasks + delete + complete functions to the list */}
+      <TaskList
+        tasks={tasks}
+        onDelete={deleteTask}
+        onToggleComplete={toggleComplete}
+      />
+    </div>
+  );
 }
+
+export default App;

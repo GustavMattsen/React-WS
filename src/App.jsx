@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import Sidebar from "./components/Sidebar.jsx";
-import Header from "./components/Header.jsx";
-import TaskForm from "./components/TaskForm.jsx";
-import TaskList from "./components/TaskList.jsx";
+import { useState } from "react";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 
 function App() {
+  // The tasks will look like:
+  // { id: number, title: string, description: string, completed: boolean }
   const [tasks, setTasks] = useState([]);
 
-  const addTask = (task) => setTasks([...tasks, task]);
-  const deleteTask = (index) => setTasks(tasks.filter((_, i) => i !== index));
+  // Add a new task (called from TaskForm after validation)
+  const addTask = (taskData) => {
+    const newTask = {
+      id: Date.now(),          // simple unique id
+      title: taskData.title,
+      description: taskData.description,
+      completed: false
+    };
 
-  return (
-    <div className="d-flex">
-      {/* Sidebar */}
-      <Sidebar />
+    setTasks([...tasks, newTask]);
+  };
 
-      {/* Main content */}
-      <div className="flex-grow-1 ms-5" style={{ marginLeft: "220px" }}>
-        <Header />
-        <div className="container mt-5 pt-5">
-          <TaskForm addTask={addTask} />
-          <TaskList tasks={tasks} deleteTask={deleteTask} />
-        </div>
-      </div>
-    </div>
-  );
+  // Delete a task by its id
+  const deleteTask = (id) => {
+    const filtered = tasks.filter((task) => task.id !== id);
+    setTasks(filtered);
+  };
+
 }
-
-export default App;

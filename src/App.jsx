@@ -35,21 +35,35 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <Header />
-      <Sidebar />
+  <div className="container-fluid">
+    <Header />
 
-      {/* Pass addTask to the form so it can create new tasks */}
-      <TaskForm onAddTask={addTask} />
+    <div className="row">
+      {/* Sidebar */}
+      <div className="col-12 col-md-3 col-lg-2 p-0">
+        <Sidebar />
+      </div>
 
-      {/* Pass tasks + delete + complete functions to the list */}
-      <TaskList
-        tasks={tasks}
-        onDelete={deleteTask}
-        onToggleComplete={toggleComplete}
-      />
+      {/* Main Content */}
+      <div className="col-12 col-md-9 col-lg-10">
+        <div className="p-4">
+
+          {/* Task Form */}
+          <TaskForm onAddTask={addTask} />
+
+          {/* Task List */}
+          <TaskList
+            tasks={tasks}
+            onDelete={deleteTask}
+            onToggleComplete={toggleComplete}
+          />
+
+        </div>
+      </div>
     </div>
-  );
+  </div>
+);
+
 }
 
 export default App;

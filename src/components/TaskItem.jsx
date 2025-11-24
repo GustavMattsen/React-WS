@@ -1,22 +1,42 @@
-import React from "react";
-
-function TaskItem({ task, deleteTask }) {
+function TaskItem({ task, onDelete, onToggleComplete }) {
   return (
-    <div className="card mb-2 p-3 shadow-sm">
-      <div className="d-flex justify-content-between align-items-start">
+    <div
+      className={`card p-3 mb-2 ${
+        task.completed ? "border-success bg-light" : ""
+      }`}
+    >
+      <div className="d-flex justify-content-between align-items-center">
         <div>
-          <strong>{task.title}</strong>
-          {task.description && <p className="mb-1">{task.description}</p>}
+          <h5
+            style={{
+              textDecoration: task.completed ? "line-through" : "none",
+            }}
+          >
+            {task.title}
+          </h5>
+
+          <p className="mb-1">{task.description}</p>
+
           {task.dueDate && (
             <small className="text-muted">Due: {task.dueDate}</small>
           )}
-          {task.assignee && (
-            <div><small>Assigned to: {task.assignee}</small></div>
-          )}
         </div>
-        <button className="btn btn-sm btn-danger" onClick={deleteTask}>
-          ✖
-        </button>
+
+        <div>
+          <button
+            className="btn btn-sm btn-success me-2"
+            onClick={() => onToggleComplete(task.id)}
+          >
+            {task.completed ? "Undo" : "Complete"}
+          </button>
+
+          <button
+            className="btn btn-sm btn-danger"
+            onClick={() => onDelete(task.id)}
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

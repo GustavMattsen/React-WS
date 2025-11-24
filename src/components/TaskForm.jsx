@@ -1,42 +1,30 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 function TaskForm({ addTask }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [assignee, setAssignee] = useState("");
   const [attachment, setAttachment] = useState(null);
-  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    // --- Simple Validation ---
-    if (!title.trim() || !description.trim()) {
-      setError("Please enter both a title and a description.");
-      return;
-    }
-
-    // Clear any previous error
-    setError("");
-
+  // This runs when the form is valid
+  const onSubmit = (data) => {
     const newTask = {
-      title,
-      description,
-      dueDate,
-      assignee,
-      attachment,
+      title: data.title,
+      description: data.description,
+      dueDate: data.dueDate || "",
+      assignee: data.assignee || "",
+      attachment: attachment || null,
     };
 
-    // Pass the task to App.jsx
     addTask(newTask);
 
-    // Reset fields
-    setTitle("");
-    setDescription("");
-    setDueDate("");
-    setAssignee("");
-    setAttachment(null);
+    reset();               // clears react-hook-form fields
+    setAttachment(null);   // clears file input
   };
 
 }
